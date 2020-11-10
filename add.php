@@ -12,7 +12,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     }
     $result = "";
     $result .= $ssh->exec("useradd -e `date -d '$days days' +'%Y-%m-%d'` -s /bin/false -M $username");
-    $result .= $ssh->exec("echo -e '$password\n$password\n'|passwd $username &> /dev/null");
     if (strpos($result, 'already exists') >= 1) {
         echo "<script>alert('ผู้ใช้งาน $username มีอยู่แล้วในระบบ');window.location.href='/'</script>";
     } else {
